@@ -1,0 +1,1 @@
+# Autobot plugin for Discourse
