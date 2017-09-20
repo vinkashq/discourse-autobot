@@ -1,0 +1,25 @@
+<div id="admin-plugin-autobot">
+  <h1>{{i18n "autobot.title.campaigns"}}</h1>
+
+  <table>
+    <tr>
+      <th>{{i18n "autobot.campaign.field.source"}}</th>
+      <th>{{i18n "autobot.campaign.field.category"}}</th>
+      <th>{{i18n "autobot.campaign.field.topic_id"}}</th>
+      <th></th>
+    </tr>
+
+    {{#each model as |c|}}
+      <tr class="">
+        <td>{{c.sourceName}}</td>
+        <td>{{c.categoryName}}</td>
+        <td>{{c.topic_id}}</td>
+
+        <td>
+          {{d-button action="edit" actionParam=rule icon="pencil" class="edit" title="autobot.campaign.button.edit"}}
+          {{d-button action="delete" actionParam=rule icon="trash-o" class="delete btn-danger" title="autobot.campaign.button.delete"}}
+        </td>
+      </tr>
+    {{/each}}
+  </table>
+</div>

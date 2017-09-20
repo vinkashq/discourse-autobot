@@ -3,7 +3,7 @@ module Autobot
     KEY = 'campaign'.freeze
 
     def self.list
-      Autobot::Store.get(KEY)
+      Autobot::Store.get(KEY) || []
     end
 
     def self.set(value)

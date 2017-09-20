@@ -12,7 +12,7 @@ after_initialize do
   [
     '../lib/autobot/store.rb',
     '../lib/autobot/campaign.rb',
-    '../app/controllers/autobot/campaign.rb'
+    '../app/controllers/autobot/campaigns.rb'
   ].each { |path| load File.expand_path(path, __FILE__) }
 
   module ::Autobot
@@ -25,9 +25,9 @@ after_initialize do
   end
 
   Autobot::Engine.routes.draw do
-    get "/campaigns" => "campaign#list", constraints: StaffConstraint.new
-    post "/campaigns" => "campaign#create", constraints: StaffConstraint.new
-    delete "/campaigns" => "campaign#delete", constraints: StaffConstraint.new
+    get "/campaigns" => "campaigns#list", constraints: StaffConstraint.new
+    post "/campaigns" => "campaigns#create", constraints: StaffConstraint.new
+    delete "/campaigns" => "campaigns#delete", constraints: StaffConstraint.new
   end
 
   Discourse::Application.routes.prepend do

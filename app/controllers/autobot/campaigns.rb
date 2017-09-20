@@ -1,7 +1,7 @@
 require_dependency 'application_controller'
 
 module Autobot
-  class CampaignController < ::ApplicationController
+  class CampaignsController < ::ApplicationController
 
     def list
       render json: Autobot::Campaign.list
