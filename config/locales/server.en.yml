@@ -1,6 +1,6 @@
 en:
   site_settings:
-    discourse_autobot_enabled: 'Enable Discourse Autobot'
+    autobot_enabled: 'Enable Autobot'
 
   autobot:
     bio: "Hi, I’m not a real person. I’m a bot that can create automatic content for this site."

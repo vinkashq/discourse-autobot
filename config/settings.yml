@@ -1,4 +1,4 @@
 plugins:
-  discourse_autobot_enabled:
+  autobot_enabled:
     default: true
     client: true
