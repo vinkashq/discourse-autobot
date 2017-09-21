@@ -6,6 +6,8 @@
 
 enabled_site_setting :autobot_enabled
 
+register_asset "stylesheets/admin/autobot.scss", :admin
+
 after_initialize do
   SeedFu.fixture_paths << Rails.root.join("plugins", "autobot", "db", "fixtures").to_s
 
@@ -38,5 +40,6 @@ after_initialize do
 
   Discourse::Application.routes.append do
     get "/admin/plugins/autobot" => "admin/plugins#index", constraints: StaffConstraint.new
+    get "/admin/plugins/autobot/:page" => "admin/plugins#index", constraints: StaffConstraint.new
   end
 end

@@ -2,3 +2,16 @@ en:
   js:
     autobot:
       title: 'Autobot'
+    campaigns:
+      title: 'Campaigns'
+    campaign:
+      field:
+        source: 'Source'
+        category: 'Category'
+        topic_id: 'Topic Id'
+      button:
+        new: 'New Campaign'
+        save: 'Save'
+        cancel: 'Cancel'
+        edit: 'Edit'
+        delete: 'Delete'

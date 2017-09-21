@@ -1,0 +1,55 @@
+<div id="admin-plugin-autobot-campaigns">
+  {{#if editing}}
+    <form class="form-horizontal">
+      <div>
+        <label>{{i18n "autobot.campaign.field.category"}}</label>
+        {{category-chooser
+          value=editing.categoryId
+          rootNone=true}}
+      </div>
+      <div>
+        <label>{{i18n "autobot.campaign.field.topic_id"}}</label>
+        {{text-field value=editing.topic_id}}
+      </div>
+      <div class="buttons">
+        {{d-button
+          action="save"
+          class="save btn btn-primary"
+          title="autobot.campaign.button.save"
+          label="autobot.campaign.button.save"
+          disabled=saveDisabled}}
+        {{d-button
+          action="cancel"
+          class="btn btn-default"
+          title="autobot.campaign.button.cancel"
+          label="autobot.campaign.button.cancel"}}
+      </div>
+    </form>
+  {{else}}
+    <div class="list-controls">
+      {{d-button action="new"
+        icon="plus"
+        title="autobot.campaign.button.new"
+        label="autobot.campaign.button.new"}}
+    </div>
+  {{/if}}
+  <table>
+    <tr>
+      <th>{{i18n "autobot.campaign.field.source"}}</th>
+      <th>{{i18n "autobot.campaign.field.category"}}</th>
+      <th>{{i18n "autobot.campaign.field.topic_id"}}</th>
+      <th></th>
+    </tr>
+    {{#each model as |c|}}
+      <tr class="">
+        <td>{{c.sourceName}}</td>
+        <td>{{c.categoryName}}</td>
+        <td>{{c.topic_id}}</td>
+        <td>
+          {{d-button action="edit" actionParam=c icon="pencil" class="edit" title="autobot.campaign.button.edit"}}
+          {{d-button action="delete" actionParam=c icon="trash-o" class="delete btn-danger" title="autobot.campaign.button.delete"}}
+        </td>
+      </tr>
+    {{/each}}
+  </table>
+</div>
