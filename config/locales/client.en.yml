@@ -2,16 +2,21 @@ en:
   js:
     autobot:
       title: 'Autobot'
-    campaigns:
-      title: 'Campaigns'
-    campaign:
-      field:
-        source: 'Source'
-        category: 'Category'
-        topic_id: 'Topic Id'
-      button:
-        new: 'New Campaign'
-        save: 'Save'
-        cancel: 'Cancel'
-        edit: 'Edit'
-        delete: 'Delete'
+      campaigns:
+        title: 'Campaigns'
+      campaign:
+        field:
+          provider: 'Provider'
+          source: 'Source'
+          category: 'Category'
+          topic_id: 'Topic Id'
+        button:
+          new: 'New Campaign'
+          create: 'Create'
+          update: 'Update'
+          cancel: 'Cancel'
+          edit: 'Edit'
+          delete: 'Delete'
+        key:
+          youtube:
+            channel: 'Channel Id'

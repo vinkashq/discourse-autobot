@@ -10,7 +10,7 @@ module Autobot
       Autobot::Store.set(KEY, value)
     end
 
-    def self.create(source_id, topic_id, category_id, key, interval)
+    def self.create(source_id, key, category_id = nil, topic_id = nil, interval = 10.minutes)
       data = list
       id = SecureRandom.uuid
 

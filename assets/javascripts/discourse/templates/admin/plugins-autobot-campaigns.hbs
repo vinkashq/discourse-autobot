@@ -2,9 +2,21 @@
   {{#if editing}}
     <form class="form-horizontal">
       <div>
+        <label>{{i18n "autobot.campaign.field.provider"}}</label>
+        {{combo-box content=providers value=editing.provider_id}}
+      </div>
+      <div>
+        <label>{{i18n "autobot.campaign.field.source"}}</label>
+        {{combo-box content=sources value=editing.source_id}}
+      </div>
+      <div>
+        <label>{{i18n keyLabel}}</label>
+        {{text-field value=editing.key}}
+      </div>
+      <div>
         <label>{{i18n "autobot.campaign.field.category"}}</label>
         {{category-chooser
-          value=editing.categoryId
+          value=editing.category_id
           rootNone=true}}
       </div>
       <div>
@@ -13,10 +25,10 @@
       </div>
       <div class="buttons">
         {{d-button
-          action="save"
+          action=commandAction
           class="save btn btn-primary"
-          title="autobot.campaign.button.save"
-          label="autobot.campaign.button.save"
+          title=commandLabel
+          label=commandLabel
           disabled=saveDisabled}}
         {{d-button
           action="cancel"
@@ -35,6 +47,7 @@
   {{/if}}
   <table>
     <tr>
+      <th>{{i18n "autobot.campaign.field.provider"}}</th>
       <th>{{i18n "autobot.campaign.field.source"}}</th>
       <th>{{i18n "autobot.campaign.field.category"}}</th>
       <th>{{i18n "autobot.campaign.field.topic_id"}}</th>
@@ -42,6 +55,7 @@
     </tr>
     {{#each model as |c|}}
       <tr class="">
+        <td>{{c.providerName}}</td>
         <td>{{c.sourceName}}</td>
         <td>{{c.categoryName}}</td>
         <td>{{c.topic_id}}</td>

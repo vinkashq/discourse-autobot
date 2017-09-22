@@ -3,10 +3,11 @@ import Category from 'discourse/models/category';
 import computed from "ember-addons/ember-computed-decorators";
 
 export default RestModel.extend({
+  provider_id: null,
   source_id: null,
-  topic_id: null,
-  category_id: null,
   key: null,
+  category_id: null,
+  topic_id: null,
   interval: 30,
 
   @computed('category_id')

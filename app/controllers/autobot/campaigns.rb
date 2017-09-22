@@ -10,7 +10,7 @@ module Autobot
     def create
       params.permit(:source_id, :topic_id, :category_id, :key, :interval)
 
-      Autobot::Campaign.create(params[:source_id], params[:topic_id], params[:category_id], params[:key], params[:interval])
+      Autobot::Campaign.create(params[:source_id], params[:key], params[:category_id], params[:topic_id], params[:interval])
       render json: success_json
     end
 
