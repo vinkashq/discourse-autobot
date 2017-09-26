@@ -1,5 +1,6 @@
 import RestModel from 'discourse/models/rest';
 import Category from 'discourse/models/category';
+import CampaignProvider from 'discourse/plugins/autobot/discourse/models/campaign_provider';
 import computed from "ember-addons/ember-computed-decorators";
 
 export default RestModel.extend({
@@ -22,5 +23,10 @@ export default RestModel.extend({
     }
 
     return category.get('name');
+  },
+
+  @computed('provider_id')
+  providerName(providerId) {
+    CampaignProvider.findById(providerId).name;
   }
 });
