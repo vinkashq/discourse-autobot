@@ -76,6 +76,18 @@ export default Ember.Controller.extend({
         }
         this.set('editing', false);
       }).catch(popupAjaxError);
+    },
+
+    delete(campaign) {
+      const model = this.get('model');
+
+      ajax("/autobot/campaigns.json", {
+        method: 'DELETE',
+        data: campaign.getProperties('id')
+      }).then(() => {
+        const obj = model.find((x) => (x.get('id') === campaign.get('id')));
+        model.removeObject(obj);
+      }).catch(popupAjaxError);
     }
   }
 });

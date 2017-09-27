@@ -1,6 +1,7 @@
 import RestModel from 'discourse/models/rest';
 import Category from 'discourse/models/category';
 import CampaignProvider from 'discourse/plugins/autobot/discourse/models/campaign_provider';
+import CampaignSource from 'discourse/plugins/autobot/discourse/models/campaign_source';
 import computed from "ember-addons/ember-computed-decorators";
 
 export default RestModel.extend({
@@ -14,7 +15,7 @@ export default RestModel.extend({
   @computed('category_id')
   categoryName(categoryId) {
     if (!categoryId) {
-      return I18n.t('autobot.choose.all_categories');
+      return;
     }
 
     const category = Category.findById(categoryId);
@@ -27,6 +28,15 @@ export default RestModel.extend({
 
   @computed('provider_id')
   providerName(providerId) {
-    CampaignProvider.findById(providerId).name;
+    if (!providerId)
+      return;
+    return CampaignProvider.findById(providerId).name;
+  },
+
+  @computed('source_id')
+  sourceName(sourceId) {
+    if (!sourceId)
+      return;
+    return CampaignSource.findById(sourceId).name;
   }
 });
