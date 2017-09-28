@@ -29,6 +29,7 @@ after_initialize do
   Autobot::Engine.routes.draw do
     get "/campaigns" => "campaigns#list", constraints: StaffConstraint.new
     post "/campaigns" => "campaigns#create", constraints: StaffConstraint.new
+    put "/campaigns" => "campaigns#update", constraints: StaffConstraint.new
     delete "/campaigns" => "campaigns#delete", constraints: StaffConstraint.new
   end
 

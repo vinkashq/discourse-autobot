@@ -8,6 +8,7 @@ en:
         field:
           provider: 'Provider'
           source: 'Source'
+          key: 'Key'
           category: 'Category'
           topic_id: 'Topic Id'
         button:

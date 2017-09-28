@@ -8,9 +8,12 @@ module Autobot
     end
 
     def create
-      params.permit(:provider_id, :source_id, :topic_id, :category_id, :key, :interval)
+      Autobot::Campaign.create(campaign_params.except(:id))
+      render json: success_json
+    end
 
-      Autobot::Campaign.create(params[:provider_id], params[:source_id], params[:key], params[:category_id], params[:topic_id], params[:interval])
+    def update
+      Autobot::Campaign.update(campaign_params)
       render json: success_json
     end
 
@@ -20,5 +23,12 @@ module Autobot
       Autobot::Campaign.delete(params[:id])
       render json: success_json
     end
+
+    private
+
+      def campaign_params
+        params.permit(:id, :provider_id, :source_id, :topic_id, :category_id, :key, :interval)
+      end
+
   end
 end

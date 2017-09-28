@@ -66,16 +66,13 @@ export default Ember.Controller.extend({
       }).then((result) => {
         const model = this.get('model');
         const obj = model.find(x => (x.get('id') === campaign.get('id')));
-
-        if (obj) {
-          obj.setProperties({
-
-          });
-        } else {
-          model.pushObject(Campaign.create(campaign.getProperties('provider_id', 'source_id', 'key', 'category_id', 'topic_id')));
-        }
+        model.pushObject(Campaign.create(campaign.getProperties('provider_id', 'source_id', 'key', 'category_id', 'topic_id')));
         this.set('editing', false);
       }).catch(popupAjaxError);
+    },
+
+    edit(campaign) {
+      this.set('editing', campaign);
     },
 
     delete(campaign) {
@@ -87,6 +84,24 @@ export default Ember.Controller.extend({
       }).then(() => {
         const obj = model.find((x) => (x.get('id') === campaign.get('id')));
         model.removeObject(obj);
+      }).catch(popupAjaxError);
+    },
+
+    update() {
+      const campaign = this.get('editing');
+
+      ajax("/autobot/campaigns.json", {
+        method: 'PUT',
+        data: campaign.getProperties('id', 'provider_id', 'source_id', 'key', 'category_id', 'topic_id')
+      }).then((result) => {
+        const model = this.get('model');
+        const obj = model.find(x => (x.get('id') === campaign.get('id')));
+        if (obj) {
+          obj.setProperties({
+
+          });
+        }
+        this.set('editing', false);
       }).catch(popupAjaxError);
     }
   }
