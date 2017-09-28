@@ -15,9 +15,10 @@ after_initialize do
   SeedFu.fixture_paths << Rails.root.join("plugins", "autobot", "db", "fixtures").to_s
 
   [
-    '../lib/autobot/store.rb',
-    '../lib/autobot/campaign.rb',
-    '../app/controllers/autobot/campaigns.rb'
+    '../lib/store.rb',
+    '../lib/campaign.rb',
+    '../app/controllers/campaigns.rb',
+    '../app/jobs/scheduled/poll_campaign.rb'
   ].each { |path| load File.expand_path(path, __FILE__) }
 
   module ::Autobot
