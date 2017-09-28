@@ -2,3 +2,6 @@ plugins:
   autobot_enabled:
     default: true
     client: true
+  google_api_server_key:
+    default: ''
+    client: false

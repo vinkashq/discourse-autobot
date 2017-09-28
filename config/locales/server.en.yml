@@ -1,6 +1,7 @@
 en:
   site_settings:
     autobot_enabled: 'Enable Autobot'
+    google_api_server_key: 'Server Key of your Google application'
 
   autobot:
     bio: "Hi, I’m not a real person. I’m a bot that can create automatic content for this site."
