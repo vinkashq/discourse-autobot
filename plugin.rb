@@ -18,7 +18,8 @@ after_initialize do
     '../lib/store.rb',
     '../lib/campaign.rb',
     '../app/controllers/campaigns.rb',
-    '../app/jobs/scheduled/poll_campaign.rb'
+    '../app/jobs/scheduled/campaigns_handler.rb',
+    '../app/jobs/regular/poll_youtube.rb'
   ].each { |path| load File.expand_path(path, __FILE__) }
 
   module ::Autobot
@@ -29,6 +30,8 @@ after_initialize do
       isolate_namespace Autobot
     end
   end
+
+  require_dependency 'staff_constraint'
 
   Autobot::Engine.routes.draw do
     get "/campaigns" => "campaigns#list", constraints: StaffConstraint.new

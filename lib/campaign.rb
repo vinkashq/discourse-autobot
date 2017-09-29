@@ -13,6 +13,7 @@ module Autobot
     def self.create(value)
       data = list
       value["id"] = SecureRandom.uuid
+      value["last_polled_at"] = nil
 
       data.push(value)
       set(data)
@@ -23,13 +24,11 @@ module Autobot
     def self.update(value)
       data = list
 
-      index = data.index do |i|
-        i["id"] == value["id"]
-      end
+      campaign = find(value["id"])
 
-      return create(value) unless index
+      return unless campaign
 
-      data[index].merge!(value.except(:id))
+      campaign.merge!(value.except(:id))
       set(data)
 
       value["id"]
@@ -43,6 +42,18 @@ module Autobot
       end
 
       set(data)
+    end
+
+    def self.find(id)
+      data = list
+
+      index = data.index do |i|
+        i["id"] == id
+      end
+
+      return unless index
+
+      data[index]
     end
   end
 end

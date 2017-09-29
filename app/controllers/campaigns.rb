@@ -27,7 +27,7 @@ module Autobot
     private
 
       def campaign_params
-        params.permit(:id, :provider_id, :source_id, :topic_id, :category_id, :key, :interval)
+        params.permit(:id, :provider_id, :source_id, :topic_id, :category_id, :key, :polling_frequency)
       end
 
   end
