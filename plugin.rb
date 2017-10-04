@@ -17,7 +17,9 @@ after_initialize do
   [
     '../lib/store.rb',
     '../lib/campaign.rb',
+    '../lib/provider.rb',
     '../app/controllers/campaigns.rb',
+    '../app/jobs/autobot_campaign.rb',
     '../app/jobs/scheduled/campaigns_handler.rb',
     '../app/jobs/regular/poll_youtube.rb'
   ].each { |path| load File.expand_path(path, __FILE__) }

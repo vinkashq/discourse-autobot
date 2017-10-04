@@ -1,3 +1,4 @@
+
 module Jobs
   class CampaignsHandler < Jobs::Scheduled
     every 5.minutes
@@ -8,12 +9,13 @@ module Jobs
       campaigns = ::Autobot::Campaign.list
 
       campaigns.each do |c|
-        # if c["last_polled_at"].present?
-        #   polling_frequency = 10 # c["polling_frequency"].minutes
-        #   last_polled_at = c["last_polled_at"].to_datetime.minutes
+        if c["last_polled_at"].present?
+          polling_interval = Integer(c["polling_interval"].presence || "60").minutes
+          last_polled_at = Time.parse(c["last_polled_at"])
 
-        #   next if last_polled_at + polling_frequency > Time.now.minutes
-        # end
+          next if last_polled_at + polling_interval > Time.now
+        end
+
         case c["provider_id"]
         when "1" # YouTube
           Jobs.enqueue(:poll_youtube, campaign_id: c["id"])

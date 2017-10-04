@@ -24,11 +24,13 @@ module Autobot
     def self.update(value)
       data = list
 
-      campaign = find(value["id"])
+      index = data.index do |i|
+        i["id"] == value["id"]
+      end
 
-      return unless campaign
+      return unless index
 
-      campaign.merge!(value.except(:id))
+      data[index].merge!(value.except(:id))
       set(data)
 
       value["id"]
