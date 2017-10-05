@@ -17,11 +17,12 @@ after_initialize do
   [
     '../lib/store.rb',
     '../lib/campaign.rb',
+    '../lib/post_creator.rb',
     '../lib/provider.rb',
     '../app/controllers/campaigns.rb',
     '../app/jobs/autobot_campaign.rb',
     '../app/jobs/scheduled/campaigns_handler.rb',
-    '../app/jobs/regular/poll_youtube.rb'
+    '../app/jobs/regular/poll_youtube_channel.rb'
   ].each { |path| load File.expand_path(path, __FILE__) }
 
   module ::Autobot
