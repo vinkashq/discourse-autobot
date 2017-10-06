@@ -1,32 +1,29 @@
 import Campaign from 'discourse/plugins/autobot/discourse/models/campaign';
+import CampaignProvider from 'discourse/plugins/autobot/discourse/models/campaign_provider';
+import CampaignSource from 'discourse/plugins/autobot/discourse/models/campaign_source';
 import { ajax } from 'discourse/lib/ajax';
 import { popupAjaxError } from 'discourse/lib/ajax-error';
 import computed from "ember-addons/ember-computed-decorators";
 
 export default Ember.Controller.extend({
-  providers: [
-    { id: 1, name: 'YouTube', key: 'youtube' }
-  ],
-
-  providerSources: [
-    { provider_id: 1, id: 1, name: 'Channel', key: 'channel' }
-  ],
-
   editing: false,
+
+  @computed
+  providers() {
+    return CampaignProvider.list();
+  },
 
   @computed('editing.provider_id')
   sources(provider_id) {
     if (Ember.isEmpty(provider_id))
       return [];
-    return this.get('providerSources').filter(function (el) {
-      return el.provider_id == provider_id;
-    });
+    return CampaignSource.filterByProvider(parseInt(provider_id));
   },
 
   @computed('editing.provider_id', 'editing.source_id')
   keyLabel(provider_id, source_id) {
-    var provider = this.providers.findBy('id', parseInt(provider_id));
-    var source = this.providerSources.findBy('id', parseInt(source_id));
+    var provider = CampaignProvider.findById(parseInt(provider_id));
+    var source = CampaignSource.findById(parseInt(source_id));
     if (provider && source)
       return 'autobot.campaign.key.' + provider.key + '.' + source.key;
     return null;

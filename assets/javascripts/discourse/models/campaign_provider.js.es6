@@ -1,8 +1,9 @@
 import computed from "ember-addons/ember-computed-decorators";
 import { on } from 'ember-addons/ember-computed-decorators';
 
-const CampaignProviders = [
-  { id: 1, name: 'YouTube', key: 'youtube' }
+const values = [
+  { id: 1, name: 'YouTube', key: 'youtube' },
+  { id: 2, name: 'Website', key: 'website' }
 ]
 
 const CampaignProvider = Discourse.Model.extend({
@@ -22,7 +23,11 @@ CampaignProvider.reopenClass({
   findById(id) {
     if (!id) { return; }
 
-    return CampaignProviders.findBy('id', parseInt(id));
+    return values.findBy('id', parseInt(id));
+  },
+
+  list() {
+    return values;
   }
 
 });

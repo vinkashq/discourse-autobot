@@ -1,8 +1,9 @@
 import computed from "ember-addons/ember-computed-decorators";
 import { on } from 'ember-addons/ember-computed-decorators';
 
-const CampaignSources = [
-  { provider_id: 1, id: 1, name: 'Channel', key: 'channel' }
+const values = [
+  { provider_id: 1, id: 1, name: 'Channel', key: 'channel' },
+  { provider_id: 2, id: 2, name: 'Feed', key: 'feed' }
 ]
 
 const CampaignSource = Discourse.Model.extend({
@@ -24,7 +25,17 @@ CampaignSource.reopenClass({
   findById(id) {
     if (!id) { return; }
 
-    return CampaignSources.findBy('id', parseInt(id));
+    return values.findBy('id', parseInt(id));
+  },
+
+  filterByProvider(id) {
+    return values.filter(function (el) {
+      return el.provider_id == id;
+    });
+  },
+
+  list() {
+    return values;
   }
 
 });

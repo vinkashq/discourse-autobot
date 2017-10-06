@@ -22,3 +22,5 @@ en:
         key:
           youtube:
             channel: 'Channel Id'
+          website:
+            feed: 'RSS Feed URL'
