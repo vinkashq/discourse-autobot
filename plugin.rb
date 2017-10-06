@@ -32,6 +32,12 @@ after_initialize do
       engine_name PLUGIN_NAME
       isolate_namespace Autobot
     end
+
+    AUTOBOT_USER_ID ||= -3
+
+    def self.autobot_user
+      @autobot_user ||= User.find_by(id: AUTOBOT_USER_ID)
+    end
   end
 
   require_dependency 'staff_constraint'

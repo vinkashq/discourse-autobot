@@ -6,7 +6,7 @@ module Autobot
     end
 
     def user
-      Discourse.system_user
+      Autobot.autobot_user
     end
 
     def title
