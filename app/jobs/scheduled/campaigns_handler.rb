@@ -18,7 +18,7 @@ module Jobs
 
         case c["provider_id"]
         when "1" # YouTube
-          Jobs.enqueue(:poll_youtube, campaign_id: c["id"])
+          Jobs.enqueue(:poll_youtube_channel, campaign_id: c["id"])
         end
       end
     end

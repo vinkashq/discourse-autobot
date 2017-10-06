@@ -62,11 +62,11 @@ export default Ember.Controller.extend({
 
       ajax("/autobot/campaigns.json", {
         method: 'POST',
-        data: campaign.getProperties('provider_id', 'source_id', 'key', 'category_id', 'topic_id')
+        data: campaign.getProperties('provider_id', 'source_id', 'key', 'category_id', 'topic_id', 'polling_interval')
       }).then((result) => {
         const model = this.get('model');
         const obj = model.find(x => (x.get('id') === campaign.get('id')));
-        model.pushObject(Campaign.create(campaign.getProperties('provider_id', 'source_id', 'key', 'category_id', 'topic_id')));
+        model.pushObject(Campaign.create(campaign.getProperties('provider_id', 'source_id', 'key', 'category_id', 'topic_id', 'polling_interval')));
         this.set('editing', false);
       }).catch(popupAjaxError);
     },
@@ -92,7 +92,7 @@ export default Ember.Controller.extend({
 
       ajax("/autobot/campaigns.json", {
         method: 'PUT',
-        data: campaign.getProperties('id', 'provider_id', 'source_id', 'key', 'category_id', 'topic_id')
+        data: campaign.getProperties('id', 'provider_id', 'source_id', 'key', 'category_id', 'topic_id', 'polling_interval')
       }).then((result) => {
         const model = this.get('model');
         const obj = model.find(x => (x.get('id') === campaign.get('id')));
