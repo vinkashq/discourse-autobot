@@ -17,6 +17,10 @@ module Autobot
 #{@video.snippet.description}}
       end
 
+      def source_url
+        "https://www.youtube.com/watch?v=#{@video.id}"
+      end
+
     end
   end
 end

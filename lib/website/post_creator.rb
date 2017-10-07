@@ -20,7 +20,11 @@ module Autobot
         content
       end
 
-      def featured_link
+      def display_featured_link?
+        true
+      end
+
+      def source_url
         link = @article_rss_item.link
         if url?(link)
           return link

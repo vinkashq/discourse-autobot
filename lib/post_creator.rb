@@ -17,6 +17,10 @@ module Autobot
       raise "Overwrite me!"
     end
 
+    def source_url
+      raise "Overwrite me!"
+    end
+
     def raw
       raw = ""
       raw << "## #{title}\n\n" if new_topic?
@@ -46,12 +50,19 @@ module Autobot
       topic_id.blank?
     end
 
-    def featured_link
-      nil
+    def display_featured_link?
+      false
     end
 
     def image_url
       nil
+    end
+
+    def custom_fields
+      {
+        autobot_campaign_id: @campaign["id"],
+        autobot_source_url: source_url
+      }
     end
 
     def params
@@ -62,13 +73,16 @@ module Autobot
         h[:cook_method] = cook_method
         h[:category] = category if new_topic?
         h[:topic_id] = topic_id unless new_topic?
-        h[:featured_link] = featured_link if new_topic? && featured_link.present?
+        h[:featured_link] = source_url if new_topic? && display_featured_link?
+        h[:custom_fields] = custom_fields
       end
     end
 
     def create
       creator = ::PostCreator.new(user, params)
       post = creator.create
+
+      post
     end
 
   end
