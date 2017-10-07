@@ -16,9 +16,11 @@ module Jobs
           next if last_polled_at + polling_interval > Time.now
         end
 
-        case c["provider_id"]
-        when "1" # YouTube
+        case c["source_id"]
+        when "1" # YouTube Channel
           Jobs.enqueue(:poll_youtube_channel, campaign_id: c["id"])
+        when "2" # Website Feed
+          Jobs.enqueue(:poll_website_feed, campaign_id: c["id"])
         end
       end
     end

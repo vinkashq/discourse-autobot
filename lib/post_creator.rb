@@ -13,18 +13,21 @@ module Autobot
       raise "Overwrite me!"
     end
 
-    def raw
+    def content
       raise "Overwrite me!"
     end
 
-    def raw_with_title
-%{## #{self.title}
+    def raw
+      raw = ""
+      raw << "## #{title}\n\n" if new_topic?
+      raw << "#{image_url}\n\n" if image_url.present?
+      raw << content
 
-#{self.raw}}
+      raw
     end
 
     def cook_method
-      Post.cook_methods[:raw_html]
+      Post.cook_methods[:regular]
     end
 
     def skip_validations
@@ -43,14 +46,23 @@ module Autobot
       topic_id.blank?
     end
 
+    def featured_link
+      nil
+    end
+
+    def image_url
+      nil
+    end
+
     def params
       {}.tap do |h|
         h[:title] = title if new_topic?
-        h[:raw] = new_topic? ? raw : raw_with_title
+        h[:raw] = raw
         h[:skip_validations] = skip_validations
         h[:cook_method] = cook_method
         h[:category] = category if new_topic?
         h[:topic_id] = topic_id unless new_topic?
+        h[:featured_link] = featured_link if new_topic? && featured_link.present?
       end
     end
 

@@ -11,7 +11,7 @@ module Autobot
         @video.snippet.title
       end
 
-      def raw
+      def content
 %{https://www.youtube.com/watch?v=#{@video.id}
 
 #{@video.snippet.description}}
