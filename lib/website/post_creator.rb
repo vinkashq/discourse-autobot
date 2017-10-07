@@ -15,7 +15,7 @@ module Autobot
         content = @article_rss_item.content_encoded&.force_encoding("UTF-8")&.scrub ||
                     @article_rss_item.content&.force_encoding("UTF-8")&.scrub ||
                     @article_rss_item.description&.force_encoding("UTF-8")&.scrub
-        content += "\n\n #{featured_link}"
+        content += "\n\n #{source_url}"
 
         content
       end

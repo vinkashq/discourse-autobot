@@ -12,7 +12,7 @@ enabled_site_setting :autobot_enabled
 register_asset "stylesheets/admin/autobot.scss", :admin
 
 after_initialize do
-  SeedFu.fixture_paths << Rails.root.join("plugins", "autobot", "db", "fixtures").to_s
+  register_seedfu_fixtures(Rails.root.join("plugins", "discourse-autobot", "db", "fixtures").to_s)
 
   [
     '../lib/store.rb',

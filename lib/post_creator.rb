@@ -79,7 +79,7 @@ module Autobot
     end
 
     def create
-      return if exist?
+      return existing if existing.present?
 
       creator = ::PostCreator.new(user, params)
       post = creator.create
@@ -87,7 +87,7 @@ module Autobot
       post
     end
 
-    def exist?
+    def existing
       return PostCustomField.where(name: "autobot_campaign_id", value: @campaign["id"])
               .where(name: "autobot_source_url", value: source_url).first.try(:post)
     end
