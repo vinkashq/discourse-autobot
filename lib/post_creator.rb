@@ -23,7 +23,7 @@ module Autobot
 
     def raw
       raw = ""
-      raw << "## #{title}\n\n" if new_topic?
+      raw << "## #{title}\n\n" unless new_topic?
       raw << "#{image_url}\n\n" if image_url.present?
       raw << content
 
