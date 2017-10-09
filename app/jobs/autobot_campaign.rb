@@ -2,8 +2,6 @@ module Jobs
   class AutobotCampaign < Jobs::Base
     attr_accessor :campaign
 
-    sidekiq_options retry: false
-
     def last_polled_at
       campaign["last_polled_at"]
     end
