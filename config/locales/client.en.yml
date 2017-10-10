@@ -11,7 +11,7 @@ en:
           key: 'Key'
           category: 'Category'
           topic_id: 'Topic Id'
-          polling_interval: 'Polling Interval'
+          polling_interval: 'Polling Interval (in minutes)'
         button:
           new: 'New Campaign'
           create: 'Create'
