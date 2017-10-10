@@ -9,6 +9,11 @@ module Jobs
 
       rss = fetch_rss
       if rss.present?
+        if last_polled_at.present?
+          build_date = rss.channel.lastBuildDate || rss.channel.pubDate
+          return if build_date.present? && build_date < last_polled_at
+        end
+
         rss.items.each do |i|
           creator = Autobot::Website::PostCreator.new(campaign, i)
           creator.create
