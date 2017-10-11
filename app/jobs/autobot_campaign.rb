@@ -3,7 +3,7 @@ module Jobs
     attr_accessor :campaign
 
     def last_polled_at
-      campaign["last_polled_at"]
+      @campaign["last_polled_at"]
     end
 
     def perform(*args)

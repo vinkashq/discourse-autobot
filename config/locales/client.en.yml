@@ -12,6 +12,7 @@ en:
           category: 'Category'
           topic_id: 'Topic Id'
           polling_interval: 'Polling Interval (in minutes)'
+          owner_username: 'Username for post ownership'
         button:
           new: 'New Campaign'
           create: 'Create'

@@ -5,8 +5,15 @@ module Autobot
       @campaign = campaign
     end
 
-    def user
-      Autobot.autobot_user
+    def owner
+      username = @campaign[:owner_username]
+      return unless username.present?
+
+      User.find_by(username: username)
+    end
+
+    def default_user
+      Autobot.user || Discourse.system_user
     end
 
     def title
@@ -82,6 +89,7 @@ module Autobot
       post = existing
       return post if post.present?
 
+      user = owner || default_user
       creator = ::PostCreator.new(user, params)
       post = creator.create
 

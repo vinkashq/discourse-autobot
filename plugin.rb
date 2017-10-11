@@ -34,10 +34,10 @@ after_initialize do
       isolate_namespace Autobot
     end
 
-    AUTOBOT_USER_ID ||= -3
+    USER_ID ||= -3
 
-    def self.autobot_user
-      @autobot_user ||= User.find_by(id: AUTOBOT_USER_ID)
+    def self.user
+      @user ||= User.find_by(id: USER_ID)
     end
   end
 

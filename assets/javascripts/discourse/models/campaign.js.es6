@@ -10,7 +10,8 @@ export default RestModel.extend({
   key: null,
   category_id: null,
   topic_id: null,
-  interval: 30,
+  polling_interval: 30,
+  owner_username: null,
 
   @computed('category_id')
   categoryName(categoryId) {
