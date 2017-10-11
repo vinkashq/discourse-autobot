@@ -52,28 +52,28 @@
         title="autobot.campaign.button.new"
         label="autobot.campaign.button.new"}}
     </div>
-  {{/if}}
-  <table>
-    <tr>
-      <th>{{i18n "autobot.campaign.field.provider"}}</th>
-      <th>{{i18n "autobot.campaign.field.source"}}</th>
-      <th>{{i18n "autobot.campaign.field.key"}}</th>
-      <th>{{i18n "autobot.campaign.field.category"}}</th>
-      <th>{{i18n "autobot.campaign.field.topic_id"}}</th>
-      <th></th>
-    </tr>
-    {{#each model as |c|}}
-      <tr class="">
-        <td>{{c.providerName}}</td>
-        <td>{{c.sourceName}}</td>
-        <td>{{c.key}}</td>
-        <td>{{c.categoryName}}</td>
-        <td>{{c.topic_id}}</td>
-        <td>
-          {{d-button action="edit" actionParam=c icon="pencil" class="edit" title="autobot.campaign.button.edit"}}
-          {{d-button action="delete" actionParam=c icon="trash-o" class="delete btn-danger" title="autobot.campaign.button.delete"}}
-        </td>
+    <table>
+      <tr>
+        <th>{{i18n "autobot.campaign.field.provider"}}</th>
+        <th>{{i18n "autobot.campaign.field.source"}}</th>
+        <th>{{i18n "autobot.campaign.field.key"}}</th>
+        <th>{{i18n "autobot.campaign.field.category"}}</th>
+        <th>{{i18n "autobot.campaign.field.topic_id"}}</th>
+        <th></th>
       </tr>
-    {{/each}}
-  </table>
+      {{#each model as |c|}}
+        <tr class="">
+          <td>{{c.providerName}}</td>
+          <td>{{c.sourceName}}</td>
+          <td>{{c.key}}</td>
+          <td>{{c.categoryName}}</td>
+          <td>{{c.topic_id}}</td>
+          <td>
+            {{d-button action="edit" actionParam=c icon="pencil" class="edit" title="autobot.campaign.button.edit"}}
+            {{d-button action="delete" actionParam=c icon="trash-o" class="delete btn-danger" title="autobot.campaign.button.delete"}}
+          </td>
+        </tr>
+      {{/each}}
+    </table>
+  {{/if}}
 </div>
