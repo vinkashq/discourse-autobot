@@ -4,6 +4,7 @@ module Jobs
   class PollYoutubeChannel < Autobot::Jobs::Base
 
     def poll(campaign)
+      Autobot::Youtube::Provider.configure
       last_polled_at = campaign[:last_polled_at]
 
       channel = ::Yt::Channel.new id: campaign[:key]
