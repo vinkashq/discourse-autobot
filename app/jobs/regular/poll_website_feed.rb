@@ -4,7 +4,7 @@ module Jobs
   class PollWebsiteFeed < Autobot::Jobs::Base
     require 'simple-rss'
 
-    def execute(args)
+    def poll(campaign)
       @feed_url = campaign[:key]
       last_polled_at = campaign[:last_polled_at]
 
