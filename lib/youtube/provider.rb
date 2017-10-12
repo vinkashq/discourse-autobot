@@ -14,5 +14,4 @@ module Autobot
   end
 end
 
-require_relative "initializer.rb"
 require_relative "post_creator.rb"
