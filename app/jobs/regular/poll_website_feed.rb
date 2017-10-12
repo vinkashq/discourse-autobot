@@ -1,11 +1,12 @@
 require 'open-uri'
 
 module Jobs
-  class PollWebsiteFeed < Jobs::AutobotCampaign
+  class PollWebsiteFeed < Autobot::Jobs::Base
     require 'simple-rss'
 
     def execute(args)
-      @feed_url = campaign["key"]
+      @feed_url = campaign[:key]
+      last_polled_at = campaign[:last_polled_at]
 
       rss = fetch_rss
       if rss.present?

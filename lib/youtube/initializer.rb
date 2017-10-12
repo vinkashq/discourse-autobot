@@ -1,9 +1,5 @@
-require_dependency 'yt'
-
 if SiteSetting.autobot_enabled? && SiteSetting.google_api_server_key.present?
-  Yt.configure do |config|
-    config.api_key = SiteSetting.google_api_server_key
-  end
+  Autobot::Youtube::Provider.configure
 end
 
 DiscourseEvent.on(:site_setting_saved) do |sitesetting|
@@ -13,8 +9,8 @@ DiscourseEvent.on(:site_setting_saved) do |sitesetting|
   if (isEnabledSetting || isGoogleApiServerKey)
     enabled = isEnabledSetting ? sitesetting.value == 't' : SiteSetting.autobot_enabled
     if enabled
-      Yt.configure do |config|
-        config.api_key = SiteSetting.google_api_server_key
+      Scheduler::Defer.later("Configure YT") do
+        Autobot::Youtube::Provider.configure
       end
     end
   end

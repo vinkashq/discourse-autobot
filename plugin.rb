@@ -20,7 +20,7 @@ after_initialize do
     '../lib/post_creator.rb',
     '../lib/provider.rb',
     '../app/controllers/campaigns.rb',
-    '../app/jobs/autobot_campaign.rb',
+    '../app/jobs/base.rb',
     '../app/jobs/scheduled/campaigns_handler.rb',
     '../app/jobs/regular/poll_youtube_channel.rb',
     '../app/jobs/regular/poll_website_feed.rb'

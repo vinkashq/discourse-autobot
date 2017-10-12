@@ -1,10 +1,12 @@
 require_dependency 'yt'
 
 module Jobs
-  class PollYoutubeChannel < Jobs::AutobotCampaign
+  class PollYoutubeChannel < Autobot::Jobs::Base
 
-    def execute(args)
-      channel = ::Yt::Channel.new id: campaign["key"]
+    def poll(campaign)
+      last_polled_at = campaign[:last_polled_at]
+
+      channel = ::Yt::Channel.new id: campaign[:key]
       videos = channel.videos
       videos = videos.where(publishedAfter: last_polled_at) if last_polled_at.present?
 
