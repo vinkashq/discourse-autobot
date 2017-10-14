@@ -13,7 +13,7 @@ module Jobs
 
       videos.each do |video|
         creator = Autobot::Youtube::PostCreator.new(campaign, video)
-        creator.create
+        creator.create!
         return unless last_polled_at.present?
       end
     end

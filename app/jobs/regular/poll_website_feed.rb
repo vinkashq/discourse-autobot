@@ -17,7 +17,7 @@ module Jobs
 
         rss.items.each do |i|
           creator = Autobot::Website::PostCreator.new(campaign, i)
-          creator.create
+          creator.create!
           return unless last_polled_at.present?
         end
       end
