@@ -86,11 +86,11 @@ module Autobot
     end
 
     def create
-      creator.create
+      existing || creator.create
     end
 
     def create!
-      creator.create!
+      existing || creator.create!
     end
 
     def existing
@@ -100,9 +100,6 @@ module Autobot
     private
 
       def creator
-        post = existing
-        return post if post.present?
-
         user = owner || default_user
 
         ::PostCreator.new(user, params)
