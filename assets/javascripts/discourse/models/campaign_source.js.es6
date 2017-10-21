@@ -3,7 +3,8 @@ import { on } from 'ember-addons/ember-computed-decorators';
 
 const values = [
   { provider_id: 1, id: 1, name: 'Channel', key: 'channel' },
-  { provider_id: 2, id: 2, name: 'Feed', key: 'feed' }
+  { provider_id: 2, id: 2, name: 'Feed', key: 'feed' },
+  { provider_id: 3, id: 3, name: 'User', key: 'user' }
 ]
 
 const CampaignSource = Discourse.Model.extend({

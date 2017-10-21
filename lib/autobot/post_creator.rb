@@ -85,24 +85,25 @@ module Autobot
       end
     end
 
-    def create
-      creator.create
-    end
-
     def create!
-      creator.create!
+      post = existing || creator.create!
+      update_campaign(@campaign)
+
+      post
     end
 
     def existing
       return PostCustomField.where(name: "autobot_source_url", value: source_url).first.try(:post)
     end
 
+    def update_campaign(value)
+      value["last_polled_at"] = Time.now
+      Autobot::Campaign.update(value)
+    end
+
     private
 
       def creator
-        post = existing
-        return post if post.present?
-
         user = owner || default_user
 
         ::PostCreator.new(user, params)

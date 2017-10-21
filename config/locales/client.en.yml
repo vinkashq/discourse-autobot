@@ -25,3 +25,5 @@ en:
             channel: 'Channel Id'
           website:
             feed: 'RSS Feed URL'
+          twitter:
+            user: 'Twitter Username'

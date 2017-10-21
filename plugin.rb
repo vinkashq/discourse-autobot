@@ -15,15 +15,13 @@ after_initialize do
   register_seedfu_fixtures(Rails.root.join("plugins", "discourse-autobot", "db", "fixtures").to_s)
 
   [
-    '../lib/store.rb',
-    '../lib/campaign.rb',
-    '../lib/post_creator.rb',
-    '../lib/provider.rb',
+    '../lib/twitter_api.rb',
+    '../lib/autobot/store.rb',
+    '../lib/autobot/campaign.rb',
+    '../lib/autobot/post_creator.rb',
+    '../lib/autobot/provider.rb',
     '../app/controllers/campaigns.rb',
-    '../app/jobs/base.rb',
-    '../app/jobs/scheduled/campaigns_handler.rb',
-    '../app/jobs/regular/poll_youtube_channel.rb',
-    '../app/jobs/regular/poll_website_feed.rb'
+    '../app/jobs/base.rb'
   ].each { |path| load File.expand_path(path, __FILE__) }
 
   module ::Autobot
