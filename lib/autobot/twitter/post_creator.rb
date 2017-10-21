@@ -25,6 +25,11 @@ module Autobot
         media["media_url_https"] if media.present?
       end
 
+      def update_campaign(value)
+        value["since_id"] = @tweet["id"] if value["since_id"].present? && value["since_id"].to_i < @tweet["id"]
+        super
+      end
+
       private
 
         def full_name

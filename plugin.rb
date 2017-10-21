@@ -21,11 +21,7 @@ after_initialize do
     '../lib/autobot/post_creator.rb',
     '../lib/autobot/provider.rb',
     '../app/controllers/campaigns.rb',
-    '../app/jobs/base.rb',
-    '../app/jobs/scheduled/campaigns_handler.rb',
-    '../app/jobs/regular/poll_youtube_channel.rb',
-    '../app/jobs/regular/poll_website_feed.rb',
-    '../app/jobs/regular/poll_twitter_user.rb'
+    '../app/jobs/base.rb'
   ].each { |path| load File.expand_path(path, __FILE__) }
 
   module ::Autobot

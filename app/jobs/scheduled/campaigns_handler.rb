@@ -23,8 +23,6 @@ module Jobs
           Jobs.enqueue(:poll_website_feed, campaign_id: c["id"])
         when "3" # Twitter User Timeline
           Jobs.enqueue(:poll_twitter_user, campaign_id: c["id"])
-        when "4" # Twitter Mention Timeline
-          Jobs.enqueue(:poll_twitter_mention, campaign_id: c["id"])
         end
       end
     end
