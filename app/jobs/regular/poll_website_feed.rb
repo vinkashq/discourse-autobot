@@ -9,7 +9,6 @@ module Jobs
       last_polled_at = campaign[:last_polled_at]
 
       rss = fetch_rss
-      update_campaign(campaign)
       
       if rss.present?
         if last_polled_at.present?
