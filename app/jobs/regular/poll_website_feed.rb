@@ -9,7 +9,7 @@ module Jobs
       last_polled_at = campaign[:last_polled_at]
 
       rss = fetch_rss
-      
+
       if rss.present?
         if last_polled_at.present?
           build_date = rss.channel.lastBuildDate || rss.channel.pubDate
@@ -19,7 +19,6 @@ module Jobs
         rss.items.reverse_each do |i|
           creator = Autobot::Website::PostCreator.new(campaign, i)
           creator.create!
-          # return unless last_polled_at.present?
         end
       end
     end

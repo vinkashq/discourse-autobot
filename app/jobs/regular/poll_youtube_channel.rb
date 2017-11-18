@@ -11,10 +11,9 @@ module Jobs
       videos = channel.videos
       videos = videos.where(publishedAfter: last_polled_at) if last_polled_at.present?
 
-      videos.each do |video|
+      videos.reverse_each do |video|
         creator = Autobot::Youtube::PostCreator.new(campaign, video)
         creator.create!
-        return unless last_polled_at.present?
       end
     end
 

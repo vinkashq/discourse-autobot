@@ -1,12 +1,18 @@
 module Autobot
   class PostCreator
 
+    attr_reader :campaign
+
     def initialize(campaign)
       @campaign = campaign
     end
 
+    def id
+      0
+    end
+
     def owner
-      username = @campaign[:owner_username]
+      username = campaign[:owner_username]
       return unless username.present?
 
       User.find_by(username: username)
@@ -46,11 +52,11 @@ module Autobot
     end
 
     def category
-      @campaign["category_id"]
+      campaign["category_id"]
     end
 
     def topic_id
-      @campaign["topic_id"]
+      campaign["topic_id"]
     end
 
     def new_topic?
@@ -67,7 +73,7 @@ module Autobot
 
     def custom_fields
       {
-        autobot_campaign_id: @campaign["id"],
+        autobot_campaign_id: campaign["id"],
         autobot_source_url: source_url
       }
     end
@@ -85,19 +91,30 @@ module Autobot
       end
     end
 
-    def create!
-      post = existing || creator.create!
+    def update_since_id
+      return if id == 0
+
+      existing = campaign["since_id"].presence.try(:to_i) || 0
+      if id > existing
+        campaign["since_id"] = id
+        Autobot::Campaign.update(campaign)
+      end
     end
 
-    def existing
+    def create!
+      post = get_existing_post || post_creator.create!
+      update_since_id
+      post
+    end
+
+    def get_existing_post
       return PostCustomField.where(name: "autobot_source_url", value: source_url).first.try(:post)
     end
 
     private
 
-      def creator
+      def post_creator
         user = owner || default_user
-
         ::PostCreator.new(user, params)
       end
 

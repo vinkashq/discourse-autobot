@@ -2,9 +2,15 @@ module Autobot
   module Twitter
     class PostCreator < Autobot::PostCreator
 
+      attr_reader :tweet
+
       def initialize(campaign, tweet)
         super(campaign)
         @tweet = tweet
+      end
+
+      def id
+        tweet["id"].to_i
       end
 
       def title
@@ -14,20 +20,15 @@ module Autobot
       end
 
       def content
-        @tweet["text"]
+        tweet["text"]
       end
 
       def source_url
-        "https://twitter.com/#{user["screen_name"]}/status/#{@tweet["id"]}"
+        "https://twitter.com/#{user["screen_name"]}/status/#{id}"
       end
 
       def image_url
         media["media_url_https"] if media.present?
-      end
-
-      def update_campaign(value)
-        value["since_id"] = @tweet["id"] if value["since_id"].present? && value["since_id"].to_i < @tweet["id"]
-        super
       end
 
       private
@@ -37,11 +38,11 @@ module Autobot
         end
 
         def user
-          @tweet["user"]
+          tweet["user"]
         end
 
         def media
-          @tweet["entities"]["media"]
+          tweet["entities"]["media"]
         end
 
     end
