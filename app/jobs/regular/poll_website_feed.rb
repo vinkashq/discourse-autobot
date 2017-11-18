@@ -16,7 +16,7 @@ module Jobs
           return if build_date.present? && build_date < last_polled_at
         end
 
-        rss.items.each do |i|
+        rss.items.reverse_each do |i|
           creator = Autobot::Website::PostCreator.new(campaign, i)
           creator.create!
           # return unless last_polled_at.present?
