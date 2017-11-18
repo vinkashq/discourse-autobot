@@ -6,6 +6,9 @@ module Autobot
         @campaign = Autobot::Campaign.find(args[:campaign_id])
 
         poll(@campaign)
+        
+        @campaign["last_polled_at"] = Time.now
+        Autobot::Campaign.update(@campaign)
       end
 
       def poll(campaign)
