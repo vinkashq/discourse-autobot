@@ -87,18 +87,10 @@ module Autobot
 
     def create!
       post = existing || creator.create!
-      update_campaign(@campaign)
-
-      post
     end
 
     def existing
       return PostCustomField.where(name: "autobot_source_url", value: source_url).first.try(:post)
-    end
-
-    def update_campaign(value)
-      value["last_polled_at"] = Time.now
-      Autobot::Campaign.update(value)
     end
 
     private
