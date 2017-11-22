@@ -108,7 +108,7 @@ module Autobot
     end
 
     def get_existing_post
-      return PostCustomField.where(name: "autobot_source_url", value: source_url).first.try(:post)
+      return PostCustomField.where(name: "autobot_source_url", value: source_url).where(name: "autobot_campaign_id", value: campaign["id"]).first.try(:post)
     end
 
     private
