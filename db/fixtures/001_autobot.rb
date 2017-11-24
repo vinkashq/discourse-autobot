@@ -37,7 +37,6 @@ if !user
 end
 
 bot = User.find(-3)
-bot.update!(admin: true, moderator: false)
 
 bot.user_option.update!(
   email_private_messages: false,
