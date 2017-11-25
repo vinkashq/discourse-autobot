@@ -108,7 +108,14 @@ module Autobot
     end
 
     def get_existing_post
-      return PostCustomField.where(name: "autobot_source_url", value: source_url).where(name: "autobot_campaign_id", value: campaign["id"]).first.try(:post)
+      existing_post_ids = PostCustomField
+                            .where(name: "autobot_source_url", value: source_url)
+                            .where(name: "autobot_campaign_id", value: campaign["id"])
+                            .pluck(:post_id)
+
+      return if existing_post_ids.blank?
+
+      Post.unscoped.find(existing_post_ids).last
     end
 
     private
