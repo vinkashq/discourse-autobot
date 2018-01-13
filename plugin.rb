@@ -6,6 +6,7 @@
 
 gem 'yt-support', '0.1.3', { require: false }
 gem 'yt', '0.32.1', { require: false }
+gem 'simple-rss', '1.3.1', { require: false }
 
 enabled_site_setting :autobot_enabled
 
